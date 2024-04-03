@@ -1,7 +1,7 @@
 use std::io;
 fn main() {
     let error = format!("That is not an option");
-    println!("Wolfenstein Fortress v0.0.2-alpha 1");
+    println!("Wolfenstein Fortress v0.0.2-alpha 2");
     println!("Licensed under GNU General Public License v3.0 (GPLv3)");
     println!("Note: The Game is currently under heavy construction");
     println!("Some functionality might not be implemented yet");
@@ -9,7 +9,7 @@ fn main() {
     // Stats
     let mut health: i8 = 100;
     let mut money: f64 = 0.00;
-    let mut ammo: i64 = 0; 
+    let mut ammo: i64 = 0;
     println!("Backstory:");
     println!("You have been captured by Nazi Soldiers after your squad's surrendered");
     println!("You have been stuck in your cell for 3 days already");
@@ -28,11 +28,39 @@ fn main() {
         if a == 1 {
             println!("You fight with the guard,");
             println!("You manage to achieve victory,");
-            println!("You got hurt a little bit but now you have a pistol and have 8 bullets");
+            println!("You got hurt a little bit but now you have a knife, pistol, and 8 bullets");
             ammo += 8;
             health -= 10;
             println!("---------------");
             println!("Health = {health}, Money = {money}, Ammo = {ammo}:");
+            println!("---------------");
+            println!("Another Guard heard you kill the Guard assigned to your cell");
+            println!("He arrives at your cell and about to shoot you");
+            println!("What will you do?");
+            println!("(1) = Shoot the Guard, (2) = Stab the Guard, (3) = Do Nothing");
+            let mut b = String::new();
+            io::stdin()
+                .read_line(&mut b)
+                .expect("Failed to read line");
+            let b: i8 = b.trim().parse().expect("Please insert a number");
+            if b == 1 || b == 2 || b == 3 {
+                if b == 1 {
+                    println!("You shoot the guard");
+                    println!("You used 3 bullets to kill him");
+                    println!("The Guard shot you as well");
+                    println!("You got hurt a little bit");
+                    println!("You get 8 bullets");
+                    health -= 20;
+                    ammo += 5;
+                    println!("---------------");
+                    println!("Health = {health}, Money = {money}, Ammo = {ammo}:");
+                    println!("---------------");
+                }
+                if b == 2 || b == 3 {
+                    println!("You got shot by the guard,");
+                    println!("GAME OVER");
+            else {
+                println!("()", error);
         }
         if a == 2 {
             println!("You decide to do nothing");
