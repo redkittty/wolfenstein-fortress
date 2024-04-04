@@ -1,7 +1,7 @@
 use std::io;
 fn main() {
-    let error = format!("That is not an option");
-    println!("Wolfenstein Fortress v0.0.2-alpha 2");
+    println!("Wolfenstein Fortress v0.0.2-alpha 3");
+    println!("Copyright (C) 2024  Jason Kirkpatrick");
     println!("Licensed under GNU General Public License v3.0 (GPLv3)");
     println!("Note: The Game is currently under heavy construction");
     println!("Some functionality might not be implemented yet");
@@ -59,9 +59,13 @@ fn main() {
                 if b == 2 || b == 3 {
                     println!("You got shot by the guard,");
                     println!("GAME OVER");
+                }
+            }
             else {
-                println!("()", error);
+                println!("That is not an option");
+            }
         }
+    }
         if a == 2 {
             println!("You decide to do nothing");
             println!("The guard leads you into the interrogation room");
@@ -147,35 +151,54 @@ fn main() {
                                           println!("You see another guard chasing after you");
                                           println!("What will you do?");
                                           println!("(1) = Shoot the Guard, (2) = Stab the Guard, (3) = Surrender");
-                                          let f = String::new();
+                                          let mut f = String::new();
+                                          io::stdin()
+                                              .read_line(&mut f)
+                                              .expect("Failed to read line");
+                                          let f: i8 = f.trim().parse().expect("Please insert a number");
                                           if f == 1 || f == 2 || f == 3 {
-
+                                            if f == 1 {
+                                              println!("You decide to shoot the guard,");
+                                              println!("The guard also shoots you");
+                                              println!("You are very badly hurt,");
+                                              println!("You eventually win and get 6 rounds");
+                                              health -= 30;
+                                              ammo += 6;
+                                              println!("---------------");
+                                              println!("Health = {health}, Money = {money}, Ammo = {ammo}:");
+                                              println!("---------------");
+                                            }
+                                            if f == 2 || f == 3 {
+                                              println!("The guard kills you");
+                                              println!("GAME OVER");
+                                            }
                                           }
                                           else {
-                                              println!("()", error);
+                                              println!("That is not an option");
 
+                                          }
                                       }
                                       if e == 2 {
-
+                                        println!("Unfinished");
                                       }
                                       if e == 3 {
-
+                                        println!("Unfinished");
                                       }
-
-                                  }
-                                  else {
-                                      println!("()", error);
                                   }
                                }
+                               if d == 2 {
+                                 println!("Unfinished");
+                               }
+                                  else {
+                                      println!("That is not an option");
+                                  }
                             }
-                            else {
-                                println!("()", error)
-                            }
+                        }
                     }
                     else {
-                        println!("()", error);
+                        println!("That is not an option");
 
-                }
+                    }
                 if b == 3 {
                     println!("You decide to attack the guard");
                     println!("Unfortunately, This isn't a good time to do so");
@@ -183,15 +206,13 @@ fn main() {
                     println!("---------------");
                     println!("GAME OVER");
                 }
-                else {
-                    println!("()", error);
-            }
+        }
             else {
-                println!("{}", error);
+                println!("That is not an option");
             }
         }
     }
     else {
-        println!("{}", error);
+        println!("That is not an option");
     }
 }
